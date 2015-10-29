@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>CapPvP | Home</title>
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://static.kohi.net/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://static.kohi.net/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://static.kohi.net/main.css">
+    <script src="https://static.kohi.net/js/jquery-1.11.3.min.js"></script>
+    <script src="https://static.kohi.net/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({'placement': 'top', 'container': 'body'});
+            $('[data-toggle="check"]').click(function (e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                if ($(this).hasClass('active')) {
+                    $(this).children('.glyphicon').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+                    $($(this).data('target')).show();
+                } else {
+                    $(this).children('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                    $($(this).data('target')).hide();
+                }
+            });
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script>
+        function ping(host, sel) {
+            var ws = new WebSocket('wss://' + host + '/wsping/');
+
+            ws.onmessage = function (e) {
+                var now = Date.now();
+                $(sel).text((now - ws.sent) + 'ms');
+                setTimeout(function () {
+                    ws.sent = Date.now()
+                    ws.send('ping');
+                }, 1000);
+            }
+
+            ws.onopen = function (e) {
+                ws.sent = Date.now();
+                ws.send('ping');
+            }
+
+            ws.onerror = function (e) {
+                $(sel).text('Error');
+            }
+
+            ws.onclose = function (e) {
+                $(sel).text('Error');
+            }
+        }
+        $(function () {
+            
+                ping('212.106.221.231', '#capeu');
+            
+                ping('us.CapPvP.com', '#capus');
+            
+                ping('au.CapPvP.com', '#capau');
+            
+        });
+    </script>
+
+</head>
+<body>
+<div class="wrapper">
+    
+
+    
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <p class="navbar-brand">
+                <a class="navbar-link" href="../home">
+                    <img src="http://files.enjin.com/186567/images/800SG.png" width="32" height="32">
+                    CapPvP
+                </a>
+            </p>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.reddit.com/r/CapPvP">
+                        <i class="fa fa-users"></i>
+                        Reddit
+                    </a>
+                </li>
+                <li>
+                    <a href="../store">
+                        <i class="fa fa-shopping-cart"></i>
+                        Store
+                    </a>
+                </li>
+                <li>
+                    <a href="../servers">
+                        <i class="fa fa-database"></i>
+                        Servers
+                    </a>
+                </li>
+				<li>
+                    <a href="../tutorials">
+                        <i class="fa fa-terminal"></i>
+                        tutorials
+                    </a>
+                </li>
+            </ul>
+        </div>
+   </nav>
+        
+<div class="container">
+        <h1>Our Gamemodes</h1>
+    <div>
+    <div class="well" style="max-width: 260px; float: left; margin-left: 20px; maring-right: 20px; min-height: 400px">
+    <a href="/servers/HCFactions">
+    <div class="thumbnail" style="max-width: 268px;">
+        <img src="http://files.enjin.com/186567/images/800SG.png" width="32" height="32">
+    </div>
+    </a>
+
+        <h3>HCFactions</h3>
+
+        <a href="/servers/HCFactions" class="btn btn-success">/server hcf</a>
+        <button type="button" class="btn btn-default copy-button" data-clipboard-text="mc.CapPvP.com" title="Click to copy.">
+        <span class="glyphicon glyphicon-paperclip"></span>
+    </button>
+    <br/><br/>
+        <p>HCFactions is a gamemode like factions but with a twist, instead of having 200 player factions you can only have 30! There is a feature called DTR (Deaths Until Raidable) When you die you lose 1 DTR, but each faction is limited to 6.5 so you can 6 people die but on the 7th death you go raidble meaning that people can mine and build inside of the claim and open chests but cannot claim it.</p>
+    </div>
+    <div>
+        <div class="well" style="max-width: 260px; float: left; margin-left: 20px; maring-right: 20px; min-height: 400px">
+            <a href="/servers/Teams">
+                <div class="thumbnail" style="max-width: 268px;">
+                <img src="http://files.enjin.com/186567/images/800SG.png" width="100" height="100">
+
+        </div>
+            </a>
+
+        <h3>Teams</h3>
+        
+        <a href="/servers/Teams" class="btn btn-success">/server teams</a>
+        <button type="button" class="btn btn-default copy-button" data-clipboard-text="mc.CapPvP.com" title="Click to copy.">
+        <span class="glyphicon glyphicon-paperclip"></span>
+    </button>
+    <br/><br/>
+        <p>Teams is a gamemode like regular factions but without claming. Teams is a competive PvP gamemode meaning that every 20 minutes you get /kit pvp so that can PvP with your other team members. To build a base you simply type /kit starter and /kit farmer with this you have everything you need to start making your base. REMEMBER the world boarder will be 10k so build your base as far out as possible. But remember that people can track you so be careful when heading back to your base.</p>
+    </div>
+</div>
+</div>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="pull-left">
+            &copy; 2014-2015 CapPvP
+        </div>
+        <div class="pull-right">
+            <a href="../maps">Maps</a>
+            |
+            <a href="../staff">Staff</a>
+            |
+            <a href="../rules">Rules</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+
+<!--
+<p>HCFactions is a gamemode like factions but with a twist, instead of having 200 player factions you can only have 30! There is a feature called DTR (Deaths Until Raidable) When you die you lose 1 DTR, but each faction is limited to 6.5 so you can 6 people die but on the 7th death you go raidble meaning that people can mine and build inside of the claim and open chests but cannot claim it.</p>
+
+-->
+

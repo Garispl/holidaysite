@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>CapPvP | Home</title>
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://static.kohi.net/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://static.kohi.net/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://static.kohi.net/main.css">
+    <script src="https://static.kohi.net/js/jquery-1.11.3.min.js"></script>
+    <script src="https://static.kohi.net/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({'placement': 'top', 'container': 'body'});
+            $('[data-toggle="check"]').click(function (e) {
+                e.preventDefault();
+                $(this).toggleClass('active');
+                if ($(this).hasClass('active')) {
+                    $(this).children('.glyphicon').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+                    $($(this).data('target')).show();
+                } else {
+                    $(this).children('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                    $($(this).data('target')).hide();
+                }
+            });
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script>
+        function ping(host, sel) {
+            var ws = new WebSocket('wss://' + host + '/wsping/');
+
+            ws.onmessage = function (e) {
+                var now = Date.now();
+                $(sel).text((now - ws.sent) + 'ms');
+                setTimeout(function () {
+                    ws.sent = Date.now()
+                    ws.send('ping');
+                }, 1000);
+            }
+
+            ws.onopen = function (e) {
+                ws.sent = Date.now();
+                ws.send('ping');
+            }
+
+            ws.onerror = function (e) {
+                $(sel).text('Error');
+            }
+
+            ws.onclose = function (e) {
+                $(sel).text('Error');
+            }
+        }
+        $(function () {
+            
+                ping('212.106.221.231', '#capeu');
+            
+                ping('us.CapPvP.com', '#capus');
+            
+                ping('au.CapPvP.com', '#capau');
+            
+        });
+    </script>
+
+</head>
+<body>
+<div class="wrapper">
+    
+
+    
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <p class="navbar-brand">
+                <a class="navbar-link" href="../home">
+                    <img src="http://files.enjin.com/186567/images/800SG.png" width="32" height="32">
+                    CapPvP
+                </a>
+            </p>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="http://www.reddit.com/r/CapPvP">
+                        <i class="fa fa-users"></i>
+                        Reddit
+                    </a>
+                </li>
+                <li>
+                    <a href="../store">
+                        <i class="fa fa-shopping-cart"></i>
+                        Store
+                    </a>
+                </li>
+                <li>
+                    <a href="../servers">
+                        <i class="fa fa-database"></i>
+                        Servers
+                    </a>
+                </li>
+				<li>
+                    <a href="../tutorials">
+                        <i class="fa fa-terminal"></i>
+                        tutorials
+                    </a>
+                </li>
+            </ul>
+        </div>
+   </nav>
+   
+   <div class="container">
+   	<div class="page-header">
+		<h1>Error</h1>
+	</div>
+	 <div class="alert alert-danger" style="font-size: 150%">Page Not Found.</div>
+	</div>
+   
+ </body>
+ </html>
